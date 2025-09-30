@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Web Automation App</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+</head>
+<body>
+    <div class="app-container">
+        <!-- App Header -->
+        <header class="app-header">
+            <h1 class="app-title">
+                <span class="material-icons">auto_awesome</span>
+                Web Automation App
+            </h1>
+            <div class="status-indicator">
+                <span class="status-dot" id="statusDot"></span>
+                <span class="status-text" id="statusText">Ready</span>
+            </div>
+        </header>
+
+        <!-- Main Content -->
+        <main class="main-content">
+            <!-- WebView Container -->
+            <div class="webview-container">
+                <div class="webview-header">
+                    <div class="url-bar">
+                        <span class="material-icons">language</span>
+                        <span class="url-text" id="currentUrl">Click "Open Website" to load target page</span>
+                        <button class="refresh-btn" id="refreshBtn">
+                            <span class="material-icons">refresh</span>
+                        </button>
+                    </div>
+                </div>
+                <div class="webview-frame" id="webviewFrame">
+                    <div class="webview-placeholder">
+                        <span class="material-icons">web</span>
+                        <p>Website will open in a new window for automation</p>
+                        <p class="placeholder-note">Use the control buttons below to manage the automation process</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Progress Section -->
+            <div class="progress-section" id="progressSection">
+                <div class="progress-header">
+                    <h3>Automation Progress</h3>
+                    <span class="progress-counter" id="progressCounter">0/0</span>
+                </div>
+                <div class="progress-bar-container">
+                    <div class="progress-bar" id="progressBar"></div>
+                </div>
+                <div class="progress-log" id="progressLog"></div>
+            </div>
+        </main>
+
+        <!-- Control Panel -->
+        <div class="control-panel">
+            <div class="website-controls">
+                <button class="btn btn--primary" id="openWebsiteBtn">
+                    <span class="material-icons">open_in_new</span>
+                    Open Website
+                </button>
+            </div>
+            <div class="control-buttons">
+                <button class="control-btn" id="saveStateBtn">
+                    <span class="material-icons">bookmark</span>
+                    <span class="btn-text">Save State</span>
+                </button>
+                <button class="control-btn" id="goToOriginalBtn">
+                    <span class="material-icons">home</span>
+                    <span class="btn-text">Go to Original</span>
+                </button>
+                <button class="control-btn control-btn--primary" id="startAutomationBtn">
+                    <span class="material-icons">play_arrow</span>
+                    <span class="btn-text">Start Automation</span>
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal for iteration input -->
+    <div class="modal hidden" id="iterationModal">
+        <div class="modal-backdrop"></div>
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3>Start Automation</h3>
+                <button class="modal-close" id="modalClose">
+                    <span class="material-icons">close</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="form-group">
+                    <label class="form-label" for="iterationCount">Number of Iterations:</label>
+                    <input 
+                        type="number" 
+                        class="form-control" 
+                        id="iterationCount" 
+                        min="1" 
+                        max="100" 
+                        value="1"
+                        placeholder="Enter number of iterations"
+                    >
+                </div>
+                <div class="info-box">
+                    <span class="material-icons">info</span>
+                    <p>This will process the specified number of "View" buttons sequentially, handling farm images and approvals for each.</p>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button class="btn btn--secondary" id="cancelBtn">Cancel</button>
+                <button class="btn btn--primary" id="confirmBtn">
+                    <span class="material-icons">play_arrow</span>
+                    Start Automation
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Toast notifications -->
+    <div class="toast-container" id="toastContainer"></div>
+
+    <script src="app.js"></script>
+</body>
+</html>
